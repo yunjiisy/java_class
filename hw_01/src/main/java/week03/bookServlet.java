@@ -27,7 +27,8 @@ public class bookServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
     //도서정보를 내보냄(get)
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+    		throws ServletException, IOException 
     { 
     	response.setContentType("text/html; charset=utf-8");
     	request.setCharacterEncoding("UTF-8");
@@ -59,14 +60,16 @@ public class bookServlet extends HttpServlet {
     /**
     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response) */
     //도서정보를 내보냄(post)
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+    		throws ServletException, IOException 
     { 
     	response.setContentType("text/html; charset=utf-8");
     	request.setCharacterEncoding("UTF-8");
     	PrintWriter out = response.getWriter();
     
     	Book book = new Book(); 
-    	book.createBook(Integer.parseInt(request.getParameter("id")),request.getParameter("name"), request.getParameter("publish"), Integer.parseInt(request.getParameter("price")));
+    	book.createBook(Integer.parseInt(request.getParameter("id")),request.getParameter("name"), 
+    			request.getParameter("publish"), Integer.parseInt(request.getParameter("price")));
     	
     	addBookToList(book);
     	out.println("<html>"); 
@@ -77,8 +80,7 @@ public class bookServlet extends HttpServlet {
     	out.println("<th>도서번호</th>");
     	out.println("<th>도서이름</th>");
     	out.println("<th>출판사</th>");  
-    	out.println("<th>가격</th>");
-    	
+    	out.println("<th>가격</th>");	
 	    for (int i = 0; i < idList.size(); i++) 
 	    { 
 	    	out.println("<tr>");
@@ -100,7 +102,6 @@ public class bookServlet extends HttpServlet {
 	    publishList.add(book.getPublish()); 
 	    priceList.add(book.getPrice());
     } 
-    
 }
 
     
